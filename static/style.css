@@ -13,6 +13,7 @@
     --text-light: #7f8c8d;
     --knight-color: #e74c3c;
     --path-color: #f39c12;
+    --possible-color: #FFC107;
     --dark-mode-bg: #1a1a2e;
     --dark-mode-card: #1f2844;
     --dark-mode-text: #e0e0e0;
@@ -34,7 +35,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     padding: 30px 20px;
-    min-height: 10vh;
+    min-height: 100vh;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -161,6 +162,11 @@ body.dark-mode .chessboard {
     border: 2px solid transparent;
 }
 
+.square:hover {
+    transform: scale(1.05);
+    z-index: 5;
+}
+
 .square.light {
     background-color: #f0d9b5;
     transition: background-color 0.5s ease;
@@ -190,10 +196,14 @@ body.dark-mode .square.dark {
 }
 
 .square.visited {
-    background-color: var(--path-color) !important;
+    background-color: #8e44ad !important; /* Purple for light mode */
     color: white;
     font-weight: bold;
     opacity: 0.8;
+}
+
+body.dark-mode .square.visited {
+    background-color: var(--path-color) !important; /* Keep orange for dark mode */
 }
 
 .square.current {
@@ -202,10 +212,23 @@ body.dark-mode .square.dark {
     animation: pulse 1s infinite;
 }
 
+.square.possible {
+    background-color: var(--possible-color) !important;
+    color: #333 !important;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
+    border: 2px solid #ff9800;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(255, 193, 7, 0.6); }
+    100% { box-shadow: 0 0 20px rgba(255, 193, 7, 1); }
 }
 
 .controls-panel {
@@ -216,6 +239,7 @@ body.dark-mode .square.dark {
 
 .essential-buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -304,19 +328,20 @@ body.dark-mode .control-group input {
 }
 
 .btn {
-    width: 100%;
-    padding: 12px;
+    padding: 12px 16px;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-bottom: 10px;
-    display: flex;
+    margin: 5px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    min-width: 120px;
+    white-space: nowrap;
 }
 
 .btn-toggle-controls, .btn-dark-mode {
@@ -334,13 +359,23 @@ body.dark-mode .control-group input {
 }
 
 .btn-secondary {
-    background: red;
+    background: linear-gradient(90deg, #f39c12, #e67e22);
     color: white;
 }
 
 .btn-danger {
     background: linear-gradient(90deg, var(--spain-color), var(--knight-color));
     color: white;
+}
+
+#manualModeBtn {
+    background-color: var(--personal-color);
+    color: white;
+}
+
+#manualModeBtn:hover {
+    background-color: #9b59b6;
+    transform: translateY(-2px);
 }
 
 .btn:hover {
@@ -439,15 +474,42 @@ body.dark-mode .legend-item {
 }
 
 .legend-knight { background-color: var(--knight-color); }
-.legend-visited {background-color: #8e44ad;}
+.legend-visited { background-color: #8e44ad; }
 .legend-current { background-color: var(--timeline-color); }
 .legend-empty { background-color: #f0d9b5; border: 1px solid #b58863; }
+.legend-possible { background-color: var(--possible-color); }
+
+body.dark-mode .legend-visited {
+    background-color: var(--path-color);
+}
 
 body.dark-mode .legend-empty {
     background-color: var(--dark-mode-square-light);
     border: 1px solid var(--dark-mode-square-dark);
 }
 
+/* Indicador visual para modo manual */
+.manual-mode-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--personal-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(142, 68, 173, 0.4);
+    z-index: 1000;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Mejorar la responsividad de los botones */
 @media (max-width: 1200px) {
     .main-content {
         grid-template-columns: 1fr;
@@ -457,6 +519,10 @@ body.dark-mode .legend-empty {
     .controls-panel {
         max-width: none;
         margin: 0 auto;
+    }
+    
+    .essential-buttons {
+        justify-content: center;
     }
 }
 
@@ -473,73 +539,28 @@ body.dark-mode .legend-empty {
     .container {
         padding: 20px;
     }
-}
-
-.square.visited {
-    background-color: #8e44ad !important; /* Purple for light mode */
-    color: white;
-    font-weight: bold;
-    opacity: 0.8;
-}
-
-body.dark-mode .square.visited, body.dark-mode .legend-visited  {
-    background-color: var(--path-color) !important; /* Keep orange for dark mode */
-
-}
-
-/* General improvements for better fluid responsiveness */
-body {
-    padding: 20px 10px; /* Reduced padding on all sides for smaller screens */
-}
-
-/* Updated chessboard responsiveness */
-.chessboard {
-    grid-template-columns: repeat(8, min(10vw, 70px));
-    grid-template-rows: repeat(8, min(10vw, 70px));
-    max-width: fit-content; /* Ensure the board doesn't stretch beyond its content */
-    margin-left: auto; /* Center the board */
-    margin-right: auto; /* Center the board */
-}
-
-/* Responsive typography */
-.header h1 {
-    font-size: clamp(2rem, 5vw, 3rem); /* Dynamic font size for headings */
-}
-
-.header h2 {
-    font-size: clamp(1rem, 2.5vw, 1.3rem); /* Dynamic font size for subheadings */
-}
-
-/* Adjusting controls for smaller screens */
-.main-content {
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
-.controls {
-    padding: 20px;
-    min-width: unset; /* Allow controls to shrink on smaller screens */
-    max-width: 100%;
-}
-
-.essential-buttons,
-.utility-buttons {
-    flex-direction: column; /* Stack buttons vertically on small screens */
-}
-
-.btn {
-    width: 100%;
-}
-
-/* New media query for extra small screens */
-@media (max-width: 480px) {
-    .container {
-        padding: 20px 15px; /* Adjust container padding for very small screens */
+    
+    .essential-buttons {
+        flex-direction: column;
     }
+    
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
 
+@media (max-width: 480px) {
     .chessboard {
-        grid-template-columns: repeat(8, min(10vw, 40px));
-        grid-template-rows: repeat(8, min(10vw, 40px));
-        border-width: 2px;
+        grid-template-columns: repeat(8, 40px);
+        grid-template-rows: repeat(8, 40px);
+    }
+    
+    .square {
+        font-size: 10px;
+    }
+    
+    .square.knight {
+        font-size: 16px;
     }
 }
