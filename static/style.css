@@ -484,4 +484,62 @@ body.dark-mode .legend-empty {
 
 body.dark-mode .square.visited, body.dark-mode .legend-visited  {
     background-color: var(--path-color) !important; /* Keep orange for dark mode */
+
+}
+
+/* General improvements for better fluid responsiveness */
+body {
+    padding: 20px 10px; /* Reduced padding on all sides for smaller screens */
+}
+
+/* Updated chessboard responsiveness */
+.chessboard {
+    grid-template-columns: repeat(8, min(10vw, 70px));
+    grid-template-rows: repeat(8, min(10vw, 70px));
+    max-width: fit-content; /* Ensure the board doesn't stretch beyond its content */
+    margin-left: auto; /* Center the board */
+    margin-right: auto; /* Center the board */
+}
+
+/* Responsive typography */
+.header h1 {
+    font-size: clamp(2rem, 5vw, 3rem); /* Dynamic font size for headings */
+}
+
+.header h2 {
+    font-size: clamp(1rem, 2.5vw, 1.3rem); /* Dynamic font size for subheadings */
+}
+
+/* Adjusting controls for smaller screens */
+.main-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.controls {
+    padding: 20px;
+    min-width: unset; /* Allow controls to shrink on smaller screens */
+    max-width: 100%;
+}
+
+.essential-buttons,
+.utility-buttons {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+}
+
+.btn {
+    width: 100%;
+}
+
+/* New media query for extra small screens */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px; /* Adjust container padding for very small screens */
+    }
+
+    .chessboard {
+        grid-template-columns: repeat(8, min(10vw, 40px));
+        grid-template-rows: repeat(8, min(10vw, 40px));
+        border-width: 2px;
+    }
 }
