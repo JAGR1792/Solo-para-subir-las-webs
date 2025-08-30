@@ -1,125 +1,638 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RECORRIDO DEL CABALLO</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="static/style.css" rel="stylesheet">
-    <script src="static/script.js"></script>
-</head>
+    <title>🎨 CSS Color Palette Playground</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Definiciones de las paletas de colores */
+            --ocean-primary: #0077be;
+            --ocean-secondary: #00a8cc;
+            --ocean-accent: #ffd23f;
+            --ocean-bg-primary: #f8fdff;
+            --ocean-bg-secondary: #e3f2fd;
+            --ocean-text: #1a365d;
+            --ocean-text-light: #4a90a4;
 
-<body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-chess-knight"></i> RECORRIDO DEL CABALLO</h1>
-            <h2>Recorrido completo del tablero de ajedrez</h2>
+            --forest-primary: #2d5016;
+            --forest-secondary: #4caf50;
+            --forest-accent: #ff6b35;
+            --forest-bg-primary: #f1f8e9;
+            --forest-bg-secondary: #dcedc8;
+            --forest-text: #1b5e20;
+            --forest-text-light: #558b2f;
+
+            --sunset-primary: #d84315;
+            --sunset-secondary: #ff5722;
+            --sunset-accent: #ffc107;
+            --sunset-bg-primary: #fff3e0;
+            --sunset-bg-secondary: #ffe0b2;
+            --sunset-text: #bf360c;
+            --sunset-text-light: #e64a19;
+            
+            --purple-primary: #6a1b9a;
+            --purple-secondary: #9c27b0;
+            --purple-accent: #e91e63;
+            --purple-bg-primary: #f3e5f5;
+            --purple-bg-secondary: #e1bee7;
+            --purple-text: #4a148c;
+            --purple-text-light: #7b1fa2;
+
+            --mint-primary: #00695c;
+            --mint-secondary: #26a69a;
+            --mint-accent: #ff4081;
+            --mint-bg-primary: #e0f2f1;
+            --mint-bg-secondary: #b2dfdb;
+            --mint-text: #004d40;
+            --mint-text-light: #00796b;
+
+            --cosmic-primary: #1a237e;
+            --cosmic-secondary: #3f51b5;
+            --cosmic-accent: #e91e63;
+            --cosmic-bg-primary: #e8eaf6;
+            --cosmic-bg-secondary: #c5cae9;
+            --cosmic-text: #0d47a1;
+            --cosmic-text-light: #1565c0;
+        }
+
+        /* Variables dinámicas por tema */
+        .theme-ocean {
+            --primary: var(--ocean-primary);
+            --secondary: var(--ocean-secondary);
+            --accent: var(--ocean-accent);
+            --bg-primary: var(--ocean-bg-primary);
+            --bg-secondary: var(--ocean-bg-secondary);
+            --text: var(--ocean-text);
+            --text-light: var(--ocean-text-light);
+        }
+        .theme-forest {
+            --primary: var(--forest-primary);
+            --secondary: var(--forest-secondary);
+            --accent: var(--forest-accent);
+            --bg-primary: var(--forest-bg-primary);
+            --bg-secondary: var(--forest-bg-secondary);
+            --text: var(--forest-text);
+            --text-light: var(--forest-text-light);
+        }
+        .theme-sunset {
+            --primary: var(--sunset-primary);
+            --secondary: var(--sunset-secondary);
+            --accent: var(--sunset-accent);
+            --bg-primary: var(--sunset-bg-primary);
+            --bg-secondary: var(--sunset-bg-secondary);
+            --text: var(--sunset-text);
+            --text-light: var(--sunset-text-light);
+        }
+        .theme-purple {
+            --primary: var(--purple-primary);
+            --secondary: var(--purple-secondary);
+            --accent: var(--purple-accent);
+            --bg-primary: var(--purple-bg-primary);
+            --bg-secondary: var(--purple-bg-secondary);
+            --text: var(--purple-text);
+            --text-light: var(--purple-text-light);
+        }
+        .theme-mint {
+            --primary: var(--mint-primary);
+            --secondary: var(--mint-secondary);
+            --accent: var(--mint-accent);
+            --bg-primary: var(--mint-bg-primary);
+            --bg-secondary: var(--mint-bg-secondary);
+            --text: var(--mint-text);
+            --text-light: var(--mint-text-light);
+        }
+        .theme-cosmic {
+            --primary: var(--cosmic-primary);
+            --secondary: var(--cosmic-secondary);
+            --accent: var(--cosmic-accent);
+            --bg-primary: var(--cosmic-bg-primary);
+            --bg-secondary: var(--cosmic-bg-secondary);
+            --text: var(--cosmic-text);
+            --text-light: var(--cosmic-text-light);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: var(--bg-primary);
+            color: var(--text);
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background 0.5s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .theme-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .theme-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.3);
+        }
+
+        .theme-btn.active {
+            background: var(--bg-secondary);
+            color: var(--text);
+            border: 2px solid var(--accent);
+            transform: translateY(0);
+        }
+
+        .palette-showcase {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            text-align: center;
+            transition: background 0.5s ease;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+
+        .palette-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .palette-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .palette-card h3 {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .palette-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .demo-section {
+            margin: 3rem 0;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--text);
+        }
+
+        .btn-accent:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .color-palette {
+            display: flex;
+            height: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .color-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: background 0.5s ease;
+        }
+        
+        .color-item-accent {
+            color: black;
+        }
+        
+        .list-item {
+            padding: 12px;
+            margin: 8px 0;
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            border-radius: 5px;
+            transition: background 0.5s ease, border-color 0.5s ease;
+            color: var(--text);
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            transition: border-color 0.5s ease;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        .stats-section {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            margin: 3rem 0;
+            border-radius: 15px;
+            transition: background 0.5s ease;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            transition: color 0.5s ease;
+        }
+
+        footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            transition: background 0.5s ease;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .theme-selector {
+                justify-content: center;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="theme-ocean">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🎨 CSS Color Playground</div>
+                <div class="theme-selector">
+                    <button class="theme-btn" data-theme="ocean">🌊 Océano</button>
+                    <button class="theme-btn" data-theme="forest">🌲 Bosque</button>
+                    <button class="theme-btn" data-theme="sunset">🌅 Atardecer</button>
+                    <button class="theme-btn" data-theme="purple">💜 Púrpura</button>
+                    <button class="theme-btn" data-theme="mint">🌿 Menta</button>
+                    <button class="theme-btn" data-theme="cosmic">🌌 Cósmico</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="palette-showcase">
+            <h2>🎨 Paletas de colores disponibles</h2>
+            <p>Cambia entre las diferentes paletas usando los botones del header</p>
+            <div class="showcase-grid">
+                <div class="palette-card">
+                    <h3>🌊 Océano</h3>
+                    <div class="color-palette">
+                        <div class="color-item" style="background: var(--ocean-primary);">Primary</div>
+                        <div class="color-item" style="background: var(--ocean-secondary);">Secondary</div>
+                        <div class="color-item" style="background: var(--ocean-accent);">Accent</div>
+                    </div>
+                    <p>Inspirada en el mar y la brisa marina</p>
+                </div>
+                
+                <div class="palette-card">
+                    <h3>🌲 Bosque</h3>
+                    <div class="color-palette">
+                        <div class="color-item" style="background: var(--forest-primary);">Primary</div>
+                        <div class="color-item" style="background: var(--forest-secondary);">Secondary</div>
+                        <div class="color-item" style="background: var(--forest-accent);">Accent</div>
+                    </div>
+                    <p>Naturaleza y vida, con toques vibrantes</p>
+                </div>
+
+                <div class="palette-card">
+                    <h3>🌅 Atardecer</h3>
+                    <div class="color-palette">
+                        <div class="color-item" style="background: var(--sunset-primary);">Primary</div>
+                        <div class="color-item" style="background: var(--sunset-secondary);">Secondary</div>
+                        <div class="color-item" style="background: var(--sunset-accent);">Accent</div>
+                    </div>
+                    <p>Cálida y acogedora como el sol poniente</p>
+                </div>
+
+                <div class="palette-card">
+                    <h3>💜 Púrpura</h3>
+                    <div class="color-palette">
+                        <div class="color-item" style="background: var(--purple-primary);">Primary</div>
+                        <div class="color-item" style="background: var(--purple-secondary);">Secondary</div>
+                        <div class="color-item" style="background: var(--purple-accent);">Accent</div>
+                    </div>
+                    <p>Elegante y sofisticada, muy moderna</p>
+                </div>
+
+                <div class="palette-card">
+                    <h3>🌿 Menta</h3>
+                    <div class="color-palette">
+                        <div class="color-item" style="background: var(--mint-primary);">Primary</div>
+                        <div class="color-item" style="background: var(--mint-secondary);">Secondary</div>
+                        <div class="color-item" style="background: var(--mint-accent);">Accent</div>
+                    </div>
+                    <p>Fresca y equilibrada con pop de color</p>
+                </div>
+
+                <div class="palette-card">
+                    <h3>🌌 Cósmico</h3>
+                    <div class="color-palette">
+                        <div class="color-item" style="background: var(--cosmic-primary);">Primary</div>
+                        <div class="color-item" style="background: var(--cosmic-secondary);">Secondary</div>
+                        <div class="color-item" style="background: var(--cosmic-accent);">Accent</div>
+                    </div>
+                    <p>Profunda y misteriosa como el espacio</p>
+                </div>
+            </div>
         </div>
 
         <div class="main-content">
-            <div class="chess-container">
-                <div class="chessboard" id="chessboard"></div>
-
-                <div class="coordinates">
-                    <div class="coord-label">Posición actual: <span id="currentPos">(0,0)</span></div>
-                    <div class="coord-label">Movimiento: <span id="moveNumber">0</span> / 64</div>
-                </div>
-            </div>
-            <div class="controls-panel">
-                <div class="essential-buttons">
-                    <button class="btn btn-primary" onclick="startTour()">
-                        <i class="fas fa-play"></i> Iniciar
-                    </button>
-                    <button class="btn btn-secondary" onclick="pauseTour()">
-                        <i class="fas fa-pause"></i> Pausar
-                    </button>
-                    <button class="btn btn-danger" onclick="resetBoard()">
-                        <i class="fas fa-redo"></i> Reiniciar
-                    </button>
-                </div>
-
-                <button class="btn" id="manualModeBtn" onclick="toggleManualMode()">
-                    <i class="fas fa-hand-pointer"></i> Modo Manual
-                </button>
-
-                <div class="utility-buttons">
-                    <button class="btn btn-toggle-controls" id="toggleControlsBtn">
-                        <i class="fas fa-eye-slash"></i> Ocultar Controles
-                    </button>
-                    <button class="btn btn-dark-mode" id="darkModeToggle">
-                        <i class="fas fa-moon"></i> Modo Oscuro
-                    </button>
-                </div>
-
-                <div class="manual-instructions" id="manualInstructions">
-                    <h5><i class="fas fa-info-circle"></i> Instrucciones - Modo Manual</h5>
-                    <ul>
-                        <li>Haz clic en cualquier casilla para empezar</li>
-                        <li>Las casillas amarillas muestran movimientos válidos</li>
-                        <li>Solo puedes mover a casillas resaltadas</li>
-                        <li>El objetivo es visitar las 64 casillas</li>
-                        <li>El juego termina si no hay movimientos válidos</li>
-                    </ul>
-                </div>
-
-
-                <div class="controls" id="controls">
-                    <h3><i class="fas fa-cogs"></i> Configuración</h3>
-
-                    <div class="status">
-                        <h4><i class="fas fa-info-circle"></i> Estado del Recorrido</h4>
-                        <p>Casillas visitadas: <span id="visitedCount">0</span></p>
-                        <p>Casillas restantes: <span id="remainingCount">64</span></p>
-                        <p>Progreso: <span id="progress">0%</span></p>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="startRow">Fila inicial (0-7):</label>
-                        <input type="number" id="startRow" min="0" max="7" value="0">
-                    </div>
-
-                    <div class="control-group">
-                        <label for="startCol">Columna inicial (0-7):</label>
-                        <input type="number" id="startCol" min="0" max="7" value="0">
-                    </div>
-
-                    <div class="control-group">
-                        <label for="speed">Velocidad de animación:</label>
-                        <select id="speed">
-                            <option value="100">Muy rápido</option>
-                            <option value="300">Rápido</option>
-                            <option value="500" selected>Normal</option>
-                            <option value="1000">Lento</option>
-                            <option value="2000">Muy lento</option>
-                        </select>
-                    </div>
-
-                    <div class="legend">
-                        <div class="legend-item">
-                            <div class="legend-square legend-knight"></div>
-                            <span>Caballo</span>
+            <div class="demo-section">
+                <h2>🎯 Elementos de demostración</h2>
+                <p>Aquí puedes ver cómo se ven diferentes componentes con cada paleta de colores. Mira cómo el fondo y el texto cambian automáticamente.</p>
+                
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <div class="card-header">
+                            <h3>Tarjeta de ejemplo</h3>
+                            <p>Este es un ejemplo de cómo se ve una tarjeta</p>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-square legend-current"></div>
-                            <span>Actual</span>
+                        <div class="card-content">
+                            <p>Aquí tienes contenido dentro de la tarjeta. Puedes ver cómo los colores interactúan entre sí.</p>
+                            <br>
+                            <button class="btn">Botón Principal</button>
+                            <button class="btn btn-accent">Botón Acento</button>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-square legend-visited"></div>
-                            <span>Visitado</span>
+                    </div>
+
+                    <div class="demo-card">
+                        <div class="card-header">
+                            <h3>Formulario</h3>
+                            <p>Ejemplo de formulario con la paleta</p>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-square legend-empty"></div>
-                            <span>Sin visitar</span>
+                        <div class="card-content">
+                            <input type="text" placeholder="Tu nombre">
+                            <input type="email" placeholder="Tu email">
+                            <br><br>
+                            <button class="btn">Enviar</button>
+                        </div>
+                    </div>
+
+                    <div class="demo-card">
+                        <div class="card-header">
+                            <h3>Lista de elementos</h3>
+                            <p>Cómo se ve una lista con estos colores</p>
+                        </div>
+                        <div class="card-content">
+                            <ul style="list-style: none; padding: 0;">
+                                <li class="list-item" style="border-left-color: var(--accent);">✅ Elemento completado</li>
+                                <li class="list-item" style="border-left-color: var(--secondary);">🔄 En progreso</li>
+                                <li class="list-item" style="border-left-color: var(--primary);">📋 Pendiente</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="demo-card">
+                        <div class="card-header">
+                            <h3>Tipografía y Enlaces</h3>
+                            <p>Ejemplo de texto y enlaces para ver la jerarquía visual.</p>
+                        </div>
+                        <div class="card-content">
+                            <h1>Encabezado H1</h1>
+                            <h2>Encabezado H2</h2>
+                            <p>Esto es un párrafo normal. Aquí el color del texto es <span style="color: var(--text-light); font-weight: 600;">más claro</span> para contrastar.</p>
+                            <a href="#">Este es un enlace de ejemplo</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <div class="stats-section">
+            <div class="container">
+                <h2>📊 Información del playground</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">6</div>
+                        <div>Paletas disponibles</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div>Posibilidades creativas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">🎨</div>
+                        <div>Hecho con amor</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
+    <footer>
+        <div class="container">
+            <p>🎨 CSS Color Palette Playground - Hecho con ❤️ para mostrar estilos increíbles</p>
+            <p>Cambia de tema usando los botones del header para ver todas las variaciones</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            
+            // Función para cambiar el tema
+            function changeTheme(theme) {
+                // Remover todas las clases de tema del body
+                body.className = '';
+                // Añadir la nueva clase de tema
+                body.classList.add(`theme-${theme}`);
+                
+                // Actualizar los botones activos
+                themeButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelector(`[data-theme="${theme}"]`).classList.add('active');
+            }
+
+            // Asignar el evento a los botones
+            themeButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const theme = event.target.dataset.theme;
+                    changeTheme(theme);
+                });
+            });
+            
+            // Establecer el tema por defecto al cargar la página
+            changeTheme('ocean');
+
+            // Animación de entrada para las tarjetas
+            const cards = document.querySelectorAll('.demo-card, .palette-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
 </body>
-
 </html>
-
