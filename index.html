@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎨 CSS Color Palette Playground</title>
+    <title>Mi playground</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Definiciones de las paletas de colores CLAROS */
         :root {
-            /* Definiciones de las paletas de colores */
             --ocean-primary: #0077be;
             --ocean-secondary: #00a8cc;
             --ocean-accent: #ffd23f;
@@ -57,7 +58,58 @@
             --cosmic-text-light: #1565c0;
         }
 
-        /* Variables dinámicas por tema */
+        /* Definiciones de las paletas de colores OSCUROS */
+        :root {
+            --dark-ocean-primary: #00b4d8;
+            --dark-ocean-secondary: #90e0ef;
+            --dark-ocean-accent: #ffd23f;
+            --dark-ocean-bg-primary: #023047;
+            --dark-ocean-bg-secondary: #001f2b;
+            --dark-ocean-text: #d8f3ff;
+            --dark-ocean-text-light: #90e0ef;
+
+            --dark-forest-primary: #52b788;
+            --dark-forest-secondary: #95d5b2;
+            --dark-forest-accent: #e6c229;
+            --dark-forest-bg-primary: #081c15;
+            --dark-forest-bg-secondary: #1b4332;
+            --dark-forest-text: #e9f5db;
+            --dark-forest-text-light: #a4c98c;
+
+            --dark-sunset-primary: #ff7b25;
+            --dark-sunset-secondary: #ff9e2b;
+            --dark-sunset-accent: #ffe364;
+            --dark-sunset-bg-primary: #3d1a00;
+            --dark-sunset-bg-secondary: #6e2e00;
+            --dark-sunset-text: #fff1d8;
+            --dark-sunset-text-light: #ffb76e;
+
+            --dark-purple-primary: #9b59b6;
+            --dark-purple-secondary: #a569bd;
+            --dark-purple-accent: #e74c3c;
+            --dark-purple-bg-primary: #1a0026;
+            --dark-purple-bg-secondary: #33004d;
+            --dark-purple-text: #f0c4f8;
+            --dark-purple-text-light: #d6a1dd;
+
+            --dark-mint-primary: #45b0a3;
+            --dark-mint-secondary: #7ed2c7;
+            --dark-mint-accent: #ff6b6b;
+            --dark-mint-bg-primary: #0a2d2a;
+            --dark-mint-bg-secondary: #1a5e5e;
+            --dark-mint-text: #d0f7f3;
+            --dark-mint-text-light: #94c4c2;
+
+            --dark-cosmic-primary: #8e94e4;
+            --dark-cosmic-secondary: #a3a8ff;
+            --dark-cosmic-accent: #ff4081;
+            --dark-cosmic-bg-primary: #0d1138;
+            --dark-cosmic-bg-secondary: #1c2350;
+            --dark-cosmic-text: #e1e4f8;
+            --dark-cosmic-text-light: #b0b5e2;
+        }
+
+        /* Variables dinámicas por tema (CLARO por defecto) */
         .theme-ocean {
             --primary: var(--ocean-primary);
             --secondary: var(--ocean-secondary);
@@ -113,6 +165,63 @@
             --text-light: var(--cosmic-text-light);
         }
 
+        /* Variables dinámicas para el MODO OSCURO */
+        .dark-mode.theme-ocean {
+            --primary: var(--dark-ocean-primary);
+            --secondary: var(--dark-ocean-secondary);
+            --accent: var(--dark-ocean-accent);
+            --bg-primary: var(--dark-ocean-bg-primary);
+            --bg-secondary: var(--dark-ocean-bg-secondary);
+            --text: var(--dark-ocean-text);
+            --text-light: var(--dark-ocean-text-light);
+        }
+        .dark-mode.theme-forest {
+            --primary: var(--dark-forest-primary);
+            --secondary: var(--dark-forest-secondary);
+            --accent: var(--dark-forest-accent);
+            --bg-primary: var(--dark-forest-bg-primary);
+            --bg-secondary: var(--dark-forest-bg-secondary);
+            --text: var(--dark-forest-text);
+            --text-light: var(--dark-forest-text-light);
+        }
+        .dark-mode.theme-sunset {
+            --primary: var(--dark-sunset-primary);
+            --secondary: var(--dark-sunset-secondary);
+            --accent: var(--dark-sunset-accent);
+            --bg-primary: var(--dark-sunset-bg-primary);
+            --bg-secondary: var(--dark-sunset-bg-secondary);
+            --text: var(--dark-sunset-text);
+            --text-light: var(--dark-sunset-text-light);
+        }
+        .dark-mode.theme-purple {
+            --primary: var(--dark-purple-primary);
+            --secondary: var(--dark-purple-secondary);
+            --accent: var(--dark-purple-accent);
+            --bg-primary: var(--dark-purple-bg-primary);
+            --bg-secondary: var(--dark-purple-bg-secondary);
+            --text: var(--dark-purple-text);
+            --text-light: var(--dark-purple-text-light);
+        }
+        .dark-mode.theme-mint {
+            --primary: var(--dark-mint-primary);
+            --secondary: var(--dark-mint-secondary);
+            --accent: var(--dark-mint-accent);
+            --bg-primary: var(--dark-mint-bg-primary);
+            --bg-secondary: var(--dark-mint-bg-secondary);
+            --text: var(--dark-mint-text);
+            --text-light: var(--dark-mint-text-light);
+        }
+        .dark-mode.theme-cosmic {
+            --primary: var(--dark-cosmic-primary);
+            --secondary: var(--dark-cosmic-secondary);
+            --accent: var(--dark-cosmic-accent);
+            --bg-primary: var(--dark-cosmic-bg-primary);
+            --bg-secondary: var(--dark-cosmic-bg-secondary);
+            --text: var(--dark-cosmic-text);
+            --text-light: var(--dark-cosmic-text-light);
+        }
+
+        /* Estilos base */
         * {
             margin: 0;
             padding: 0;
@@ -140,10 +249,20 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: background 0.5s ease;
         }
+        
+        .dark-mode header {
+            box-shadow: 0 2px 10px rgba(255,255,255,0.1);
+        }
 
         .header-content {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header-controls {
+            display: flex;
+            gap: 15px;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -171,7 +290,19 @@
             background: rgba(255,255,255,0.2);
             color: white;
         }
-
+        .theme-btn.dark-mode-toggle {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--accent);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dark-mode-toggle i {
+            transition: transform 0.3s ease;
+        }
+        
         .theme-btn:hover {
             transform: translateY(-2px);
             background: rgba(255,255,255,0.3);
@@ -192,7 +323,17 @@
             text-align: center;
             transition: background 0.5s ease;
         }
-
+        .dark-mode .palette-showcase,
+        .dark-mode .demo-card {
+            box-shadow: 0 8px 25px rgba(255,255,255,0.05);
+        }
+        .dark-mode .palette-card {
+            background: var(--bg-primary);
+        }
+        .dark-mode .card-content {
+            background: var(--bg-primary);
+        }
+        
         .showcase-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -206,7 +347,7 @@
             border-radius: 10px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
         }
 
         .palette-card:hover {
@@ -245,7 +386,7 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
         }
 
         .demo-card:hover {
@@ -258,10 +399,13 @@
             color: white;
             padding: 1.5rem;
             text-align: center;
+            transition: background 0.5s ease;
         }
 
         .card-content {
             padding: 1.5rem;
+            background: white;
+            transition: background 0.5s ease;
         }
 
         .btn {
@@ -315,10 +459,6 @@
             transition: background 0.5s ease;
         }
         
-        .color-item-accent {
-            color: black;
-        }
-        
         .list-item {
             padding: 12px;
             margin: 8px 0;
@@ -327,34 +467,37 @@
             border-radius: 5px;
             transition: background 0.5s ease, border-color 0.5s ease;
             color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 2px solid var(--secondary);
-            border-radius: 8px;
-            transition: border-color 0.5s ease;
-            font-family: 'Poppins', sans-serif;
-            color: var(--text);
-        }
-
-        h1, h2, h3 {
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        a {
+        .list-item i {
+            font-size: 1.2rem;
             color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
         }
         
-        a:hover {
-            color: var(--secondary);
-            text-decoration: underline;
+        .list-item.active {
+            border-left-color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .node-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .node-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            transition: color 0.5s ease;
+        }
+        
+        .node-card h4 {
+            margin-top: 10px;
+            color: var(--text);
         }
 
         .stats-section {
@@ -382,6 +525,37 @@
             font-weight: 700;
             color: var(--accent);
             transition: color 0.5s ease;
+        }
+        
+        .chart-bar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 150px;
+            gap: 10px;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+        
+        .chart-bar {
+            width: 25%;
+            background: var(--primary);
+            transition: height 0.5s ease, background 0.5s ease;
+            border-radius: 5px 5px 0 0;
+            text-align: center;
+            color: white;
+            font-size: 0.8rem;
+            padding-top: 5px;
+            position: relative;
+        }
+        
+        .chart-bar-label {
+            position: absolute;
+            bottom: -20px;
+            width: 100%;
+            font-size: 0.8rem;
+            color: var(--text);
         }
 
         footer {
@@ -423,14 +597,19 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">🎨 CSS Color Playground</div>
-                <div class="theme-selector">
-                    <button class="theme-btn" data-theme="ocean">🌊 Océano</button>
-                    <button class="theme-btn" data-theme="forest">🌲 Bosque</button>
-                    <button class="theme-btn" data-theme="sunset">🌅 Atardecer</button>
-                    <button class="theme-btn" data-theme="purple">💜 Púrpura</button>
-                    <button class="theme-btn" data-theme="mint">🌿 Menta</button>
-                    <button class="theme-btn" data-theme="cosmic">🌌 Cósmico</button>
+                <div class="logo">🌐 Redes_CS Playground</div>
+                <div class="header-controls">
+                    <div class="theme-selector">
+                        <button class="theme-btn" data-theme="ocean">🌊 Océano</button>
+                        <button class="theme-btn" data-theme="forest">🌲 Bosque</button>
+                        <button class="theme-btn" data-theme="sunset">🌅 Atardecer</button>
+                        <button class="theme-btn" data-theme="purple">💜 Púrpura</button>
+                        <button class="theme-btn" data-theme="mint">🌿 Menta</button>
+                        <button class="theme-btn" data-theme="cosmic">🌌 Cósmico</button>
+                    </div>
+                    <button id="darkModeToggle" class="theme-btn dark-mode-toggle">
+                        <i class="fas fa-moon"></i> Modo Oscuro
+                    </button>
                 </div>
             </div>
         </div>
@@ -439,7 +618,7 @@
     <main class="container">
         <div class="palette-showcase">
             <h2>🎨 Paletas de colores disponibles</h2>
-            <p>Cambia entre las diferentes paletas usando los botones del header</p>
+            <p>Elige un tema para ver cómo se aplican los estilos a los componentes de red.</p>
             <div class="showcase-grid">
                 <div class="palette-card">
                     <h3>🌊 Océano</h3>
@@ -505,60 +684,70 @@
 
         <div class="main-content">
             <div class="demo-section">
-                <h2>🎯 Elementos de demostración</h2>
-                <p>Aquí puedes ver cómo se ven diferentes componentes con cada paleta de colores. Mira cómo el fondo y el texto cambian automáticamente.</p>
+                <h2>🎯 Componentes de Redes</h2>
+                <p>Visualiza cómo la paleta de colores se aplica a elementos comunes en una interfaz de redes.</p>
                 
                 <div class="demo-grid">
                     <div class="demo-card">
                         <div class="card-header">
-                            <h3>Tarjeta de ejemplo</h3>
-                            <p>Este es un ejemplo de cómo se ve una tarjeta</p>
+                            <h3>Configuración de Enrutador</h3>
+                            <p>Ejemplo de la configuración de un dispositivo de red.</p>
                         </div>
                         <div class="card-content">
-                            <p>Aquí tienes contenido dentro de la tarjeta. Puedes ver cómo los colores interactúan entre sí.</p>
+                            <div class="node-card">
+                                <i class="fas fa-network-wired"></i>
+                                <h4>Router-01</h4>
+                                <p>IP: <span style="color: var(--primary);">192.168.1.254</span></p>
+                            </div>
+                            <div class="node-card">
+                                <i class="fas fa-server"></i>
+                                <h4>Servidor Web</h4>
+                                <p>IP: <span style="color: var(--secondary);">10.0.0.100</span></p>
+                            </div>
                             <br>
-                            <button class="btn">Botón Principal</button>
-                            <button class="btn btn-accent">Botón Acento</button>
+                            <button class="btn"><i class="fas fa-cog"></i> Configurar</button>
+                            <button class="btn btn-accent"><i class="fas fa-chart-line"></i> Monitorear</button>
                         </div>
                     </div>
 
                     <div class="demo-card">
                         <div class="card-header">
-                            <h3>Formulario</h3>
-                            <p>Ejemplo de formulario con la paleta</p>
-                        </div>
-                        <div class="card-content">
-                            <input type="text" placeholder="Tu nombre">
-                            <input type="email" placeholder="Tu email">
-                            <br><br>
-                            <button class="btn">Enviar</button>
-                        </div>
-                    </div>
-
-                    <div class="demo-card">
-                        <div class="card-header">
-                            <h3>Lista de elementos</h3>
-                            <p>Cómo se ve una lista con estos colores</p>
+                            <h3>Estado de Enlaces</h3>
+                            <p>Tabla de enrutamiento simplificada.</p>
                         </div>
                         <div class="card-content">
                             <ul style="list-style: none; padding: 0;">
-                                <li class="list-item" style="border-left-color: var(--accent);">✅ Elemento completado</li>
-                                <li class="list-item" style="border-left-color: var(--secondary);">🔄 En progreso</li>
-                                <li class="list-item" style="border-left-color: var(--primary);">📋 Pendiente</li>
+                                <li class="list-item" style="border-left-color: var(--secondary);">
+                                    <i class="fas fa-check-circle" style="color: var(--secondary);"></i>
+                                    <span>Interfaz Fa0/0 - <span style="font-weight: bold;">UP</span></span>
+                                </li>
+                                <li class="list-item" style="border-left-color: var(--accent);">
+                                    <i class="fas fa-exclamation-triangle" style="color: var(--accent);"></i>
+                                    <span>Interfaz Se0/1 - <span style="font-weight: bold;">DOWN</span></span>
+                                </li>
+                                <li class="list-item" style="border-left-color: var(--primary);">
+                                    <i class="fas fa-ethernet" style="color: var(--primary);"></i>
+                                    <span>Interfaz Gigabit - <span style="font-weight: bold;">ACTIVE</span></span>
+                                </li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="demo-card">
                         <div class="card-header">
-                            <h3>Tipografía y Enlaces</h3>
-                            <p>Ejemplo de texto y enlaces para ver la jerarquía visual.</p>
+                            <h3>Gráfico de Subnetting</h3>
+                            <p>División de una red en subredes.</p>
                         </div>
                         <div class="card-content">
-                            <h1>Encabezado H1</h1>
-                            <h2>Encabezado H2</h2>
-                            <p>Esto es un párrafo normal. Aquí el color del texto es <span style="color: var(--text-light); font-weight: 600;">más claro</span> para contrastar.</p>
-                            <a href="#">Este es un enlace de ejemplo</a>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="height: 100%;"><span class="chart-bar-label">Original /24</span></div>
+                                <div class="chart-bar" style="height: 80%; background: var(--secondary);"><span class="chart-bar-label">Subred A /26</span></div>
+                                <div class="chart-bar" style="height: 60%; background: var(--accent);"><span class="chart-bar-label">Subred B /27</span></div>
+                                <div class="chart-bar" style="height: 40%; background: var(--primary);"><span class="chart-bar-label">Subred C /28</span></div>
+                            </div>
+                            <p style="margin-top: 2rem; text-align: center; font-size: 0.9rem;">
+                                Este gráfico ilustra la división de una red principal en subredes más pequeñas, cada una con un rango de direcciones y un tamaño de prefijo único.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -567,19 +756,19 @@
 
         <div class="stats-section">
             <div class="container">
-                <h2>📊 Información del playground</h2>
+                <h2>📊 Estadísticas del Proyecto</h2>
                 <div class="stats-grid">
                     <div class="stat-item">
                         <div class="stat-number">6</div>
-                        <div>Paletas disponibles</div>
+                        <div>Protocolos Soportados</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">∞</div>
-                        <div>Posibilidades creativas</div>
+                        <div class="stat-number">12</div>
+                        <div>Enlaces Activos</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">🎨</div>
-                        <div>Hecho con amor</div>
+                        <div class="stat-number">5</div>
+                        <div>Clases de IP</div>
                     </div>
                 </div>
             </div>
@@ -588,35 +777,51 @@
 
     <footer>
         <div class="container">
-            <p>🎨 CSS Color Palette Playground - Hecho con ❤️ para mostrar estilos increíbles</p>
-            <p>Cambia de tema usando los botones del header para ver todas las variaciones</p>
+            <p>Elijan pues care mondasssssss</p>
+            <p>Explora cómo se verán tus proyectos de redes con diferentes temas visuales.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const body = document.body;
-            const themeButtons = document.querySelectorAll('.theme-btn');
+            const themeButtons = document.querySelectorAll('.theme-btn:not(.dark-mode-toggle)');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const toggleIcon = darkModeToggle.querySelector('i');
             
-            // Función para cambiar el tema
+            // Función para cambiar el tema de color (Océano, Bosque, etc.)
             function changeTheme(theme) {
-                // Remover todas las clases de tema del body
                 body.className = '';
-                // Añadir la nueva clase de tema
                 body.classList.add(`theme-${theme}`);
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.add('dark-mode');
+                }
                 
-                // Actualizar los botones activos
                 themeButtons.forEach(btn => btn.classList.remove('active'));
                 document.querySelector(`[data-theme="${theme}"]`).classList.add('active');
             }
 
-            // Asignar el evento a los botones
+            // Función para alternar entre modo claro y oscuro
+            function toggleDarkMode() {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    toggleIcon.classList.replace('fa-moon', 'fa-sun');
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Modo Claro';
+                } else {
+                    toggleIcon.classList.replace('fa-sun', 'fa-moon');
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Modo Oscuro';
+                }
+            }
+
+            // Asignar eventos
             themeButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     const theme = event.target.dataset.theme;
                     changeTheme(theme);
                 });
             });
+
+            darkModeToggle.addEventListener('click', toggleDarkMode);
             
             // Establecer el tema por defecto al cargar la página
             changeTheme('ocean');
